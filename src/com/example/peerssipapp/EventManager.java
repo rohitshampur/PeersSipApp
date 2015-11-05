@@ -32,9 +32,9 @@ public class EventManager implements SipListener ,IncomingCallListner {
 	public static void setSipResponse(SipResponse sipResponse) {
 		EventManager.sipResponse = sipResponse;
 	}
-	AbstractSoundManager soundManager = new AndroidSoundManager(false,log,null);
-	
+	AbstractSoundManager soundManager = new AndroidSoundManager(context);
 	public EventManager(Context context) throws SocketException {
+		this.context = context;
 		Config config = new MyConfig();
 		Logger logger = new FileLogger(null);
 		userAgent = new UserAgent(this, config, logger,soundManager );
@@ -48,7 +48,7 @@ public class EventManager implements SipListener ,IncomingCallListner {
 				}
 			}	
 		}.start();
-		this.context = context;
+		
 		
 	}
 	public static UserAgent getUserAgent(){
