@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void callSip(View v){
-		EventManager.call("sip:uttarainfo@sip2sip.info");
+		EventManager.call("sip:rohitshampur@sip2sip.info");
 	}
 	
 	public void receiveCall(View v) {

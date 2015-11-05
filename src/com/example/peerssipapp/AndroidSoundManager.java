@@ -44,6 +44,7 @@ public class AndroidSoundManager extends AbstractSoundManager {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
+		context = MyApp.getContext();
 		aManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		minBufSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,sampleRate,channelConfig,audioFormat,minBufSize*10);

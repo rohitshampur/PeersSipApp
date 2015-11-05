@@ -86,6 +86,8 @@ public class EventManager implements SipListener ,IncomingCallListner {
 	public void incomingCall(SipRequest arg0, SipResponse arg1) {
 		// TODO Auto-generated method stub
 		logger.debug("Incoming call"+arg0.getRequestUri());
+		Intent intent = new Intent(context, IncomingCall.class);
+		context.startActivity(intent);
 		
 
 	}
