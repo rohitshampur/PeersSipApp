@@ -2,6 +2,7 @@ package com.example.peerssipapp;
 
 import java.net.SocketException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +16,14 @@ import net.sourceforge.peers.sip.syntaxencoding.SipUriSyntaxException;
 import net.sourceforge.peers.sip.transport.SipRequest;
 import net.sourceforge.peers.sip.transport.SipResponse;
 
-public class EventManager implements SipListener ,IncomingCallListner {
+public class EventManager implements SipListener  {
 
 	private static final String TAG = "EventManager";
 	private static UserAgent userAgent;
 	private Config config;
 	private static SipRequest sipRequest;
-	static SipResponse sipResponse;
+	private static SipResponse sipResponse;
+	private static IncomingCallListner listner;
 	Context context ;
 	Logger log = new FileLogger(null);
 	com.google.code.microlog4android.Logger logger = MainActivity.logger;
@@ -32,6 +34,8 @@ public class EventManager implements SipListener ,IncomingCallListner {
 	public static void setSipResponse(SipResponse sipResponse) {
 		EventManager.sipResponse = sipResponse;
 	}
+	
+	
 	AbstractSoundManager soundManager = new AndroidSoundManager(context);
 	public EventManager(Context context) throws SocketException {
 		this.context = context;
@@ -48,6 +52,7 @@ public class EventManager implements SipListener ,IncomingCallListner {
 				}
 			}	
 		}.start();
+		listner = (IncomingCallListner)(Activity)context;
 		
 		
 	}
@@ -85,9 +90,10 @@ public class EventManager implements SipListener ,IncomingCallListner {
 	@Override
 	public void incomingCall(SipRequest arg0, SipResponse arg1) {
 		// TODO Auto-generated method stub
+	
 		logger.debug("Incoming call"+arg0.getRequestUri());
-		Intent intent = new Intent(context, IncomingCall.class);
-		context.startActivity(intent);
+		listner.pickupClicked(arg0, arg1);
+		
 		
 
 	}
@@ -105,6 +111,7 @@ public class EventManager implements SipListener ,IncomingCallListner {
 		// TODO Auto-generated method stub
 		
 		logger.debug("Registration successfull");
+		listner.registerSuccssFull();
 
 
 	}
@@ -113,6 +120,7 @@ public class EventManager implements SipListener ,IncomingCallListner {
 	public void registering(SipRequest arg0) {
 		// TODO Auto-generated method stub
 		logger.debug("Registering......");
+		listner.registering();
 
 	}
 
@@ -127,30 +135,6 @@ public class EventManager implements SipListener ,IncomingCallListner {
 		// TODO Auto-generated method stub
 		logger.debug("Ringing.....");
 
-	}
-
-	@Override
-	public void hangupClicked(SipRequest sipRequest) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void pickupClicked(SipRequest sipRequest) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void busyHereClicked(SipRequest sipRequest) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dtmf(char digit) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
