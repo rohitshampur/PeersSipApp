@@ -2,10 +2,6 @@ package com.example.peerssipapp;
 
 import java.net.SocketException;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import net.sourceforge.peers.Config;
 import net.sourceforge.peers.FileLogger;
 import net.sourceforge.peers.Logger;
@@ -15,6 +11,8 @@ import net.sourceforge.peers.sip.core.useragent.UserAgent;
 import net.sourceforge.peers.sip.syntaxencoding.SipUriSyntaxException;
 import net.sourceforge.peers.sip.transport.SipRequest;
 import net.sourceforge.peers.sip.transport.SipResponse;
+import android.app.Activity;
+import android.content.Context;
 
 public class EventManager implements SipListener  {
 
