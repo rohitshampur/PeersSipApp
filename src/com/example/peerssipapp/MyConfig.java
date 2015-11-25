@@ -28,9 +28,9 @@ public class MyConfig implements Config {
 	}
 	return inetAddress;
 	}
-	@Override public String getUserPart() { return "rohitshampur"; }
-	@Override public String getDomain() { return "sip2sip.info"; }
-	@Override public String getPassword() { return "qwertyuiop99"; }
+	@Override public String getUserPart() { return "username"; }
+	@Override public String getDomain() { return "domain"; }
+	@Override public String getPassword() { return "password"; }
 	@Override // use microphone and speakers to capture and playback sound
 	public MediaMode getMediaMode() { return MediaMode.captureAndPlayback; }
 	
